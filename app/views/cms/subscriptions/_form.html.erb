@@ -1,0 +1,5 @@
+
+<%= f.cms_text_field :name %>
+<%= f.cms_text_field :phone_number %>
+<%= f.cms_text_field :email %>
+<%= f.cms_drop_down :property_id, Property.all.map{|p| [p.name, p.id]}, :prompt => "Select Property"%>

@@ -1,0 +1,29 @@
+<table cellpadding="5">
+	<%@property.news_events.each do |property_news_event|%>
+			<tr>
+				<td class="tableLabel" valign="top">News Name:</td>
+				<td valign="top"><%=property_news_event.news_name%></td>
+			</tr>
+			<tr>
+				<td class="tableLabel" valign="top">News Description:</td>
+				<td valign="top"><%=property_news_event.news_description%></td>
+			</tr>
+			<tr>
+				<td class="tableLabel" valign="top">Event Title:</td>
+				<td valign="top"><%=property_news_event.event_title%></td>
+			</tr>
+			<tr>
+				<td class="tableLabel" valign="top">Event Description:</td>
+				<td valign="top"><%=property_news_event.event_description%></td>
+			</tr>
+			<tr>
+				<td class="tableLabel" valign="top">Event Start Date:</td>
+				<td valign="top"><%=format_date(property_news_event.event_starts_on)%></td>
+			</tr>
+			<tr>
+				<td class="tableLabel" valign="top">Event End Date:</td>
+				<td valign="top"><%=format_date(property_news_event.event_ends_on)%></td>
+			</tr>
+			<tr><td colspan="2"><hr/></td></tr>		
+	<%end%>
+</table>

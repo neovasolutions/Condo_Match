@@ -1,0 +1,5 @@
+<%= f.cms_text_field :name %>
+
+<%= f.cms_file_field :attachment_file, :label => "Property Logo" %>
+
+<%= f.cms_drop_down :property_id, Property.all.map{|p| [p.name, p.id]}, :prompt => "Select Property"%>

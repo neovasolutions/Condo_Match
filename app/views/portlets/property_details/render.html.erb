@@ -1,0 +1,120 @@
+<%=javascript_include_tag 'main'%>
+<script>
+	function subscribe(property_id)
+	{		
+		var username = $('#name').val();
+		var email = $('#email').val();
+		var phone_number = $('#phone_number').val();		
+		$.ajax({url: '/subscribe?name='+username+'&email='+email+'&phone_number='+phone_number+'&property_id='+property_id,
+				complete: function(){
+					$('#name').val('');
+					$('#email').val('');
+					$('#phone_number').val('');
+					document.getElementById('sub_status').style.display = 'block';
+				}
+				});
+		
+	}
+</script>
+<div class="propertyDetails">
+	<div class="slider">
+		<p><%=image_tag (@property.attachment_link) unless @property.attachment_link.blank?%></p>
+		<p>view By: Multimedia|Map</p>
+	</div>
+	<div class="propertyDetails">
+		<div>
+			<div class="propertyDetailsLeft">
+				<div class="logoImage">
+					<%=image_tag (@property.property_logo.attachment_link) unless @property.property_logo.blank?%>
+				</div>
+					<script type="text/javascript">
+						var addthis_config = {"data_track_clickback":true};
+					</script>
+					<div class="share">
+						<iframe src="http://www.facebook.com/plugins/like.php?href=<%=request.url%>&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:255px; height:80px;" allowTransparency="true"></iframe>
+						<div class="addthis_toolbox addthis_default_style"  addthis:url="<%=request.url%>" addthis:title="<%=request.url%>">
+							<!--<a class="addthis_button_facebook"><img src="[YOUR IMAGE SRC]"></img></a>-->
+							<a class="addthis_button_favorites"></a>
+							<!--<a class="addthis_button_facebook"></a>-->
+							<a class="addthis_button_twitter"></a>
+							<a class="addthis_button_myspace"></a>
+							<a class="addthis_button_email"></a>
+						</div>
+						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=tushar412"></script>
+					</div>
+			</div>
+			<div class="propertyDetailsRight">
+				<div><%=@property.description%></div>
+				<div class="subscription">
+					<div class="subscriptionLeft">
+						<input type="text" class="subscriptionTextbox" name="name" id="name" title="Your Name" value="Your Name" onblur="if(this.value==''){this.value=this.title;}" onfocus="if(this.value==this.title){this.value='';}"/>
+					</div>
+					<div class="subscriptionLeft">
+						<input type="text" class="subscriptionTextbox" name="phone_number" id="phone_number" title="Phone Number" value="Phone Number" onblur="if(this.value==''){this.value=this.title;}" onfocus="if(this.value==this.title){this.value='';}"/>
+					</div>
+					<div class="subscriptionLeft">
+						<input type="text" class="subscriptionTextbox" name="email" id="email" title="you@there.com" value="you@there.com" onblur="if(this.value==''){this.value=this.title;}" onfocus="if(this.value==this.title){this.value='';}"/>
+					</div>
+					<div class="subscriptionLeft">
+						<input type="button" value="Sign up" onclick="javascript:subscribe('<%= @property.id %>');"/>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div>
+					<span id="sub_status" class="sub_status">Thank You for Registering with us, our Administrator will get back to you soon.</span>
+				</div>
+			</div><div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="propertySearchInfo">
+			<div class="propertyDetailsLeft">
+				<input type="hidden" id="view_type" value="column"/>
+				<div><input type="text" name="search" id="search" title="Quick find condos and area" value="<%=params[:search_text]%>" onblur="if(this.value==''){this.value=this.title;}" onfocus="if(this.value==this.title){this.value='';}" onkeyup="doSearchColumnView();"></div>
+				<div class="search_result" id="searchResult"></div>
+				<script>
+					doSearchColumnView();
+				</script>
+			</div>
+			
+			<div class="propertyDetailsRight">
+					<div class="property-area" id="userarea">
+			   			<div class="cont">
+							<div class="property">
+								<div class="property-nav" id="anav">
+									<ul>
+										<li class="select"><a href="javascript:;" rel="overview">Overview</a></li>
+										<li><a href="javascript:;" rel="area_profile">Area Profile</a></li>
+										<li><a href="javascript:;" rel="news_events">News + Events</a></li>
+										<li><a href="javascript:;" rel="twitter"><%=@property.name%> @ twitter</a></li>
+										<li><a href="javascript:;" rel="promotions">Promotions</a></li>
+									</ul>
+								</div>
+								
+								<div class="property-home tab" id="overview">
+									<%=@property.description%>
+								</div>
+								
+			   					<div class="tab" id="area_profile">
+			   						<%= render :partial=>"/shared/property_area_profile", :locals=>{:property=>@property}%>
+			   					</div>
+			   					
+			   					<div class="tab" id="news_events">
+					   				<%= render :partial=>"/shared/property_news_events", :locals=>{:property=>@property}%>
+				   				</div>
+				   				
+				   				<div class="tab" id="twitter">
+					   					<%= render :partial=>"/shared/property_twitter", :locals=>{:property=>@property}%>
+				   				</div>
+				   				
+				   				<div class="tab" id="promotions">
+									<%= render :partial=>"/shared/property_promotions", :locals=>{:property=>@property}%>	   				
+				   				</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+   					</div>
+			
+			</div>
+		</div>
+	</div>
+</div>	

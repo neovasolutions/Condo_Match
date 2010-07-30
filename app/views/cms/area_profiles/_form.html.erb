@@ -1,0 +1,9 @@
+
+<%= f.cms_text_field :name %>
+<%= f.cms_text_field :address1 %>
+<%= f.cms_text_field :address2 %>
+<%= f.cms_text_field :city %>
+<%= f.cms_text_field :state %>
+<%= f.cms_text_field :country %>
+<%= f.cms_text_field :zipcode %>
+<%= f.cms_drop_down :property_id, Property.all.map{|p| [p.name, p.id]}, :prompt => "Select Property"%>

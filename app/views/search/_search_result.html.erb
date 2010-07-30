@@ -1,0 +1,29 @@
+<div class="result">
+	<%if params[:view]!="column"%>
+		<%=will_paginate @results, :class => 'pagination ajax'%>
+	<%end%>	
+	<%cnt=0%>
+	<%@results.each do |result|%>
+		<%cnt+=1%>
+		<%if cnt%3==1 and params[:view]!="column"%>
+			<div class="searchResultPhotoView">
+		<%end%>
+			<div <%if params[:view]!="column"%> class="photoViewResult" <%end%>>
+				<%if params[:view]=="photo" or params[:view]=="column"%>
+					<p><%= link_to image_tag(result.property_display_image.attachment_link),"/property-details?id=#{result.id}&search_text=#{params[:search_text]}" unless result.property_display_image.blank?%></p>
+				<%end%>
+				<p><%=link_to result.name,"/property-details?id=#{result.id}&search_text=#{params[:search_text]}"%></p>
+			</div>
+		<%if cnt%3==0 and params[:view]!="column"%>
+			<div class="clear"></div></div>
+		<%end%>
+	<%end%>
+	<%=will_paginate @results, :class => 'pagination ajax'%>
+</div>
+<script>
+	jQuery(".pagination A").click(function(){
+		jQuery("#searchResult").load(jQuery(this).attr('href'));
+		$(this).html("<img src='/images/spinner.gif'/>");
+		return false;
+	});
+</script>

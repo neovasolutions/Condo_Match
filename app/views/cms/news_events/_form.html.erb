@@ -1,0 +1,9 @@
+<%= f.cms_text_field :name %>
+
+<%= f.cms_text_field :news_name %>
+<%= f.cms_text_area :news_description %>
+<%= f.cms_text_field :event_title %>
+<%= f.cms_text_area :event_description %>
+<%= f.cms_date_picker :event_starts_on %>
+<%= f.cms_date_picker :event_ends_on %>
+<%= f.cms_drop_down :property_id, Property.all.map{|p| [p.name, p.id]}, :prompt => "Select Property"%>

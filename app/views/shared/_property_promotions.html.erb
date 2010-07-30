@@ -1,0 +1,7 @@
+<table>
+<%@property.promotions.each do |property_promotion|%>
+	<tr><td class="tableLabel" valign="top">Name:</td><td valign="top"><%=property_promotion.name%></td></tr>
+	<tr><td class="tableLabel" valign="top">Description:</td><td valign="top"><%=property_promotion.description%></td></tr>
+	<tr><td colspan="2"><hr/></td></tr>	
+<%end%>
+</table>

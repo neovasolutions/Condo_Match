@@ -1,0 +1,19 @@
+body {
+	
+}
+
+.result{
+	text-align:center;
+}
+.searchResultPhotoView{
+	margin:5px;
+	text-align:cebter;
+}
+.photoViewResult{
+	float:left;
+	width:30%;
+	margin:5px;
+}
+.pagination{
+	text-align:right;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title><%= page_title %></title>
+		<%= yield :html_head %>
+		<link href="/stylesheets/main.css" type="text/css" rel="stylesheet"/>
+		<link href="/stylesheets/search.css" type="text/css" rel="stylesheet"/>
+		<%=javascript_include_tag 'jquery','search'%>
+	</head>
+	<body>
+		<%= cms_toolbar %>
+	 	<div id="wrapper" class="page">
+			<div class="header">
+				<div class="floatdivleft" style="margin-top:13px;">
+					Logo Image
+				</div>
+				<div class="floatdivright">
+					<%=render :partial=>'/shared/menu'%>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="slider">
+				Slidder Image
+			</div>
+			<div class="search">
+				<table>
+					<tr>
+						<td><a href="#" onclick="searchResultPhotoView();">Photo View</a>|<a href="#" onclick="searchResultListView();">List View</a></td>
+						<td>
+							Just Added
+						</td>
+						<td>
+							Exclusive
+						</td>
+						<td>
+							Most Popular Areas
+						</td>
+						<td>
+							Most Popular Condos
+						</td>
+						<td>
+							<input type="hidden" id="view_type" value="photo"/>
+							<input type="text" name="search" id="search" title="Quick find condos and area" value="Quick find condos and area" onblur="if(this.value==''){this.value=this.title;}" onfocus="if(this.value==this.title){this.value='';}" onkeyup="doSearch();">
+						</td>
+					</tr>
+				</table>				
+			</div>
+			<div class="search_result" id="searchResult">
+				
+			</div>
+			 <%= container :main %>
+			<%=render :partial=>'/shared/footer'%>		
+		</div>
+	</body>
+</html>

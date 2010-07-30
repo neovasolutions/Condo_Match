@@ -1,0 +1,5 @@
+<table>
+	<%Twitter::Search.new(@property.name).each do |twit|%>
+		<tr><td><%=image_tag twit.profile_image_url, :width=>"48px", :height=>"48px" %></td><td><%=twit.text%></td></tr>
+	<%end%>
+</table>
